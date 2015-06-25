@@ -21,30 +21,34 @@ def grab():
     box = (x_pad + 1,y_pad+1,x_pad+10,y_pad+8)
     im = ImageGrab.grab(box)
     im.save(os.getcwd() + '\\Grab001.png', 'PNG')
+    print grab
     return im
 
-def F5 (*args):
+def F5 ():
     win32api.keybd_event(0x74[i], 0,0,0)
     time.sleep(.05)
     win32api.keybd_event(0x74[i],0 ,win32con.KEYEVENTF_KEYUP ,0)
+    print F5
 
 def getButton():
     
     im = ImageOps.grayscale(ImageGrab.grab
-                            ((xPad+1,yPad+1,xPad+9,yPad+7)))
+                            ((x_pad+1,y_pad+1,x_pad+9,y_pad+7)))
     a = array(im.getcolors())
 ##    im.save(os.getcwd() + '\\getButton1.png', 'PNG')
-    print 'table 1 bubble = %d' % a.sum()
+    print 'Button = %d' % a.sum()
     return a.sum()
 
 def buyFood ():
     
     if s.getpixel(783, 833) != (190, 217, 191):
             time.sleep(.1)
+            print buyFood1
     else:
             F5 (*args)
             time.sleep(1)
             buyFood ()
+            print buyFood2
 
 
 def main():
@@ -57,6 +61,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+    print main
 
 
 
