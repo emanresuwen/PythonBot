@@ -16,52 +16,46 @@ y_pad = 831
 #End Globals
 #-------------------------------------
 
-
 def grab():
-    box = (x_pad + 1,y_pad+1,x_pad+10,y_pad+8)
+    box= (782,832,785,835)
     im = ImageGrab.grab(box)
     im.save(os.getcwd() + '\\Grab001.png', 'PNG')
-    print grab
     return im
 
 def F5 ():
-    win32api.keybd_event(0x74[i], 0,0,0)
+    win32api.keybd_event(0x74, 0,0,0)
     time.sleep(.05)
-    win32api.keybd_event(0x74[i],0 ,win32con.KEYEVENTF_KEYUP ,0)
+    win32api.keybd_event(0x74,0 ,win32con.KEYEVENTF_KEYUP ,0)
     print F5
 
-def getButton():
-    
-    im = ImageOps.grayscale(ImageGrab.grab
-                            ((x_pad+1,y_pad+1,x_pad+9,y_pad+7)))
-    a = array(im.getcolors())
-##    im.save(os.getcwd() + '\\getButton1.png', 'PNG')
-    print 'Button = %d' % a.sum()
-    return a.sum()
+class Cord:
+    button = (783,833)   
 
-def buyFood ():
+def buyFood():
     
-    if s.getpixel(783, 833) != (190, 217, 191):
+        time.sleep(.05)
+        s = grab()
+        if s.getpixel(Cord.button) != (240, 240, 239):
+            print 'rice is available'
+            time.sleep(.5)
+            buyFood()
+        else:
+            print 'rice is NOT available'
             time.sleep(.1)
-            print buyFood1
-    else:
-            F5 (*args)
-            time.sleep(1)
-            buyFood ()
-            print buyFood2
+            F5()
+            time.sleep(5)
+            buyFood()
+            
+
+def start ():
+    time.sleep(3)
+    buyFood ()
 
 
 def main():
-    grab()
-##    print 'Ran Main()'
-##    while True:
-##        getButton()
-    
-
-
-if __name__ == '__main__':
-    main()
-    print main
+    start()
+    while True:
+        buyFood()
 
 
 
